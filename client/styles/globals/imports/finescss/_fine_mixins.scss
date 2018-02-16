@@ -1,0 +1,26 @@
+// scss-lint:disable VendorPrefixes
+
+// Media Query Fun
+// Inspired by http://www.sitepoint.com/managing-responsive-breakpoints-sass/
+@mixin bp($name, $breakpoint_list: $breakpoints, $additional_breakpoints...) {
+  $base-query: retrievebp($name, $breakpoint_list);
+
+  // Ensure name exists in breakpoint_list (warning thrown in retrievebp)
+  @if $base-query {
+
+    // Concat extra breakpoints if provided
+    @if($additional_breakpoints) {
+      @each $raw_name in $additional_breakpoints {
+        // Fetch new breakpoint definition
+        $breakpoint: retrievebp($raw_name, $breakpoint_list);
+        // Continue appending to query string
+        $base-query: unquote("#{$base-query} and #{$breakpoint}");
+      }
+    }
+
+    // Finally print
+    @media #{$base-query} {
+      @content;
+    }
+  }
+}
