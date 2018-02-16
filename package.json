@@ -1,7 +1,7 @@
 {
-  "name": "HAP Universal App",
+  "name": "UA",
   "version": "1.0.0",
-  "description": "Universal App for HAP power users",
+  "description": "Universal App",
   "author": "Will Chertoff",
   "license": "MIT",
   "private": false,
